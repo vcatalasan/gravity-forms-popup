@@ -2,7 +2,7 @@
 /*
 Plugin Name: Gravity Forms Popup
 Description:  An Ajax Form Loader. It Load Gravity Forms in a popup modal window. Shortcode usage: [gravityforms action="popup" id="1" text="button text" width="900px"]
-Version: 1.0.1
+Version: 1.1.1
 Author: Val Catalasan
 */
 
@@ -46,7 +46,9 @@ class GravityFormsPopup {
             'width'        => '900px',
             'height'       => 'auto',
             'margin'       => '0 auto 0',
-            'padding'      => 'auto'
+            'padding'      => 'auto',
+            'onsuccess'    => 'null',
+            'onfailure'    => 'null',
 		), $attributes );
 
 		$form_id = absint( $a['id'] );
@@ -110,6 +112,11 @@ class GravityFormsPopup {
                     });
                 $('#gf_popup_form_container_<?php echo $form_id ?> .close')
                     .click(function(){
+                        var defaultCallback = function(){window.location.reload(true)};
+                        var onSuccessCallback = <?php echo $a['onsuccess'] ?> || defaultCallback;
+                        var onFailureCallback = <?php echo $a['onfailure'] ?> || defaultCallback;
+                        $('#success-form-<?php echo $form_id ?>').length && onSuccessCallback();
+                        $('#failure-form-<?php echo $form_id ?>').length && onFailureCallback();
                         var button = $('#gf_popup_get_form_<?php echo $form_id ?>');
                         button.show();
                     });
