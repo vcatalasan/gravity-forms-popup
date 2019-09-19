@@ -2,7 +2,7 @@
 /*
 Plugin Name: Gravity Forms Popup
 Description:  An Ajax Form Loader. It Load Gravity Forms in a popup modal window. Shortcode usage: [gravityforms action="popup" id="1" text="button text" width="900px"]
-Version: 1.1.1
+Version: 1.1.2
 Author: Val Catalasan
 */
 
@@ -44,7 +44,7 @@ class GravityFormsPopup {
 			'text'         => 'Show me the form!',
 			'button'       => 'btn btn-primary btn-lg',
             'width'        => '900px',
-            'height'       => 'auto',
+            'height'       => '100%',
             'margin'       => '0 auto 0',
             'padding'      => 'auto',
             'onsuccess'    => 'null',
